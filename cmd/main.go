@@ -16,6 +16,18 @@ func main() {
 	// Register all available channels
 	notifications.RegisterChannels([]map[string]string{
 		{
+			"type": "sms-log",
+			"name": "log",
+		},
+		{
+			"type": "email-log",
+			"name": "log",
+		},
+		{
+			"type": "slack-log",
+			"name": "log",
+		},
+		{
 			"type":       "email-local",
 			"name":       "helo (local)",
 			"host":       os.Getenv("SMTP_LOCAL_HOST"),
@@ -31,13 +43,6 @@ func main() {
 			"port":     os.Getenv("SENDINBLUE_SMTP_PORT"),
 			"username": os.Getenv("SENDINBLUE_SMTP_USERNAME"),
 			"password": os.Getenv("SENDINBLUE_SMTP_PASSWORD"),
-		},
-		{
-			"type":    "sms-log",
-			"name":    "log",
-			"host":    "127.0.0.1",
-			"api_key": "asdfg",
-			"sid":     "123",
 		},
 		{
 			"type":        "sms",
