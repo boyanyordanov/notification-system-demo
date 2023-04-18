@@ -1,0 +1,38 @@
+version: '3.8'
+
+
+services:
+  nats:
+    image: nats:latest
+    command: ["-js"]
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    volumes:
+      - nats-data:/nats/data # Mount a volume for persistence
+
+  api:
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    env_file: .env
+    environment:
+      - NATS_SERVER=nats:4222  # Specify the NATS server address
+    depends_on:
+      - nats
+    ports:
+      - "8000:8000"  # Expose port 8000 for the API to listen on
+
+
+  cmd:
+    build:
+      context: .
+      dockerfile: ./cmd/Dockerfile
+    env_file: .env
+    environment:
+      - NATS_SERVER=nats:4222  # Specify the NATS server address
+    depends_on:
+      - nats
+
+volumes:
+  nats-data:
