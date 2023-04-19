@@ -32,6 +32,7 @@ services:
     environment:
       - NATS_SERVER=nats:4222  # Specify the NATS server address
     depends_on:
+      - api
       - nats
 
 volumes:
