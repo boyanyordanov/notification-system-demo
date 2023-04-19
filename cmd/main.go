@@ -33,7 +33,7 @@ func main() {
 			"host":       os.Getenv("SMTP_LOCAL_HOST"),
 			"port":       os.Getenv("SMTP_LOCAL_PORT"),
 			"username":   os.Getenv("SMTP_LOCAL_USERNAME"),
-			"password":   "",
+			"password":   os.Getenv("SMTP_LOCAL_PASSWORD"),
 			"from_email": os.Getenv("SMTP_LOCAL_FROM_EMAIL"),
 		},
 		{
